@@ -29,9 +29,12 @@ Route::middleware(['auth'])->group(function (){
         Route::prefix('post')->group(function (){
             Route::get('/create', 'create')->name('post.create');
             Route::post('/store', 'store')->name('post.store');
-            Route::get('/edit/{id}', 'edit')->name('post.edit');
-            Route::put('/update/{id}', 'update')->name('post.update');
-            Route::delete('/destroy/{id}', 'destroy')->name('post.destroy');
+            Route::middleware('editPost')->group(function (){
+                Route::get('/edit/{id}', 'edit')->name('post.edit');
+                Route::put('/update/{id}', 'update')->name('post.update');
+                Route::delete('/destroy/{id}', 'destroy')->name('post.destroy');
+            });
+
         });
 
     });
