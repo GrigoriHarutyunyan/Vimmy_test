@@ -45,7 +45,12 @@ class PostsRepository implements PostsRepositoryInterface
         return $this->model()::where('id', $id)->first();
     }
 
-    public function updatePost($data, $id)
+    /**
+     * @param $data
+     * @param $id
+     * @return mixed
+     */
+    public function updatePost($data, $id) :mixed
     {
         $post = $this->getPostById($id);
         DB::beginTransaction();
